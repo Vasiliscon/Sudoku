@@ -55,10 +55,12 @@ namespace sudoku
                 new int[] {1}
             };
 
-            Debug.Assert(ValidateSudoku(goodSudoku1), "This is supposed to validate! It's a good sudoku!");
-            Debug.Assert(ValidateSudoku(goodSudoku2), "This is supposed to validate! It's a good sudoku!");
-            Debug.Assert(!ValidateSudoku(badSudoku1), "This isn't supposed to validate! It's a bad sudoku!");
-            Debug.Assert(!ValidateSudoku(badSudoku2), "This isn't supposed to validate! It's a bad sudoku!");
+            Console.WriteLine("This is supposed to validate! It's a good sudoku! " + ValidateSudoku(goodSudoku1));
+            Console.WriteLine("This is supposed to validate! It's a good sudoku! " + ValidateSudoku(goodSudoku2));
+            Console.WriteLine("This isn't supposed to validate! It's a bad sudoku! " + !ValidateSudoku(badSudoku1));
+            Console.WriteLine("This isn't supposed to validate! It's a bad sudoku! " + !ValidateSudoku(badSudoku2));
+
+            Console.ReadKey();
         }
 
         public static bool ValidateSudoku(int[][] puzzle)
@@ -71,28 +73,26 @@ namespace sudoku
             int[] list2 = new int[n];
             for (int x = 0; x < n; x++)
             {
-                //x=012345678
-                //y=012345678
                 sum2 = 0;
                 sum = 0;
                 sum3 += x + 1;
                 for (int y = 0; y < n; y++)
                 {
-
-
                     list1[y] = puzzle[x][y];
                     list2[y] = puzzle[y][x];
                     sum += puzzle[x][y];
                     sum2 += puzzle[y][x];                  
                 }
+
                 if (list1.GroupBy(d => d).Any(c => c.Count() > 1) || list2.GroupBy(d => d).Any(c => c.Count() > 1))
-                    return true;
-                if (sum == sum3 || sum2 == sum3)
                     return false;
+                if (sum == sum3 || sum2 == sum3)
+                    return true;
+
 
             }
             
-            return true;
+            return false;
 
         }
 

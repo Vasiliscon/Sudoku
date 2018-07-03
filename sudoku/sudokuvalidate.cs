@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace sudoku
 {
     class sudokuvalidate
-    {
+    { 
+
     }
 }
